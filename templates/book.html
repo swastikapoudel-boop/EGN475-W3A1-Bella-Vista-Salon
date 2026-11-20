@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+Book an Appointment | Bella Vista Salon
+{% endblock %}
+
+{% block content %}
+
+<h1>Book an Appointment</h1>
+
+<p>
+    Select your preferred service and appointment details.
+</p>
+
+<form>
+
+    <label for="customer_name">
+        Full Name
+    </label>
+
+    <input
+        type="text"
+        id="customer_name"
+        name="customer_name"
+        placeholder="Enter your full name"
+    >
+
+    <label for="email">
+        Email Address
+    </label>
+
+    <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+    >
+
+    <label for="service">
+        Select Service
+    </label>
+
+    <select id="service" name="service">
+
+        {% for service in services %}
+
+        <option value="{{ service.id }}">
+            {{ service.name }} - ${{ "%.2f"|format(service.price_cents / 100) }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label for="date">
+        Preferred Date
+    </label>
+
+    <input
+        type="date"
+        id="date"
+        name="date"
+    >
+
+    <label for="time">
+        Preferred Time
+    </label>
+
+    <input
+        type="time"
+        id="time"
+        name="time"
+    >
+
+    <label for="notes">
+        Additional Notes
+    </label>
+
+    <textarea
+        id="notes"
+        name="notes"
+        placeholder="Any additional requests..."
+    ></textarea>
+
+    <button type="button">
+        Request Appointment
+    </button>
+
+</form>
+
+{% endblock %}
